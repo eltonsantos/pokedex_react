@@ -10,9 +10,9 @@ function Pokemon() {
   console.log(pokemons)
   console.log(previous)
 
-  const getPokemons = async () => {
+  const getPokemons = async (url='https://pokeapi.co/api/v2/pokemon') => {
     try {
-      const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon');
+      const { data } = await axios.get(url);
 
       console.log(data);
       setPokemons(data.results);
@@ -33,8 +33,14 @@ function Pokemon() {
       <h1>Pokemon</h1>
       <div className="pokemonList">
         { pokemons.map( pokemon => (
-          <button>{ pokemon.name }</button>
+          <button key={ pokemon.name }>{ pokemon.name }</button>
         ))}
+        <button disabled={ !previous } onClick={() => {
+          getPokemons(previous);
+        }} >Previous</button>
+        <button disabled={ !next } onClick={() => {
+          getPokemons(next);
+        }} >Next</button>
       </div>
     </>
   );
