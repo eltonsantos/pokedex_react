@@ -9,14 +9,13 @@ const Pokemon = () => {
   const [next, setNext] = useState([]);
   const history = useHistory();
 
-  console.log(pokemons)
-  console.log(previous)
+  // console.log(pokemons)
 
   const getPokemons = async (url='https://pokeapi.co/api/v2/pokemon') => {
     try {
       const { data } = await axios.get(url);
 
-      console.log(data);
+      // console.log(data);
       setPokemons(data.results);
       setPrevious(data.previous);
       setNext(data.next);
