@@ -9,7 +9,7 @@ const Routes = () => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={ Pokemons } />
-            <Route path="/pokemon/detalhes" component={ PokemonDetails } />
+            <Route path="/pokemon/" component={ PokemonDetails } />
         </Switch>
     </BrowserRouter>
 );

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-function Pokemon() {
+const Pokemon = () => {
 
   const [pokemons, setPokemons] = useState([]);
   const [previous, setPrevious] = useState([]);
   const [next, setNext] = useState([]);
+  const history = useHistory();
 
   console.log(pokemons)
   console.log(previous)
@@ -19,8 +21,8 @@ function Pokemon() {
       setPrevious(data.previous);
       setNext(data.next);
 
-    }catch(err){
-      console.log(err);
+    }catch(e){
+      console.log(e);
     }
   }
 
@@ -33,14 +35,24 @@ function Pokemon() {
       <h1>Pokemon</h1>
       <div className="pokemonList">
         { pokemons.map( pokemon => (
-          <button key={ pokemon.name }>{ pokemon.name }</button>
+          <button key={ pokemon.name } onClick={() => {
+            history.push({
+              pathname: '/pokemon/',
+              search: `${ pokemon.url }`
+            });
+          }}>
+            { pokemon.name }
+          </button>
         ))}
+
         <button disabled={ !previous } onClick={() => {
           getPokemons(previous);
         }} >Previous</button>
+
         <button disabled={ !next } onClick={() => {
           getPokemons(next);
         }} >Next</button>
+
       </div>
     </>
   );
