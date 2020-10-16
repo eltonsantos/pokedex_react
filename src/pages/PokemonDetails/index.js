@@ -4,26 +4,26 @@ import {Container, Wrapper} from './styles';
 
 const PokemonDetails = ({location}) => {
 
-  // const TYPE_COLORS = {
-  //   bug: 'B1C12E',
-  //   dark: '4F3A2D',
-  //   dragon: '755EDF',
-  //   electric: 'FCBC17',
-  //   fairy: 'F4B1F4',
-  //   fighting: '823551D',
-  //   fire: 'E73B0C',
-  //   flying: 'A3B3F7',
-  //   ghost: '6060B2',
-  //   grass: '74C236',
-  //   ground: 'D3B357',
-  //   ice: 'A3E7FD',
-  //   normal: 'C8C4BC',
-  //   poison: '934594',
-  //   psychic: 'ED4882',
-  //   rock: 'B9A156',
-  //   steel: 'B5B5C3',
-  //   water: '3295F6'
-  // };
+  const TYPE_COLORS = {
+    bug: 'B1C12E',
+    dark: '4F3A2D',
+    dragon: '755EDF',
+    electric: 'FCBC17',
+    fairy: 'F4B1F4',
+    fighting: '823551D',
+    fire: 'E73B0C',
+    flying: 'A3B3F7',
+    ghost: '6060B2',
+    grass: '74C236',
+    ground: 'D3B357',
+    ice: 'A3E7FD',
+    normal: 'C8C4BC',
+    poison: '934594',
+    psychic: 'ED4882',
+    rock: 'B9A156',
+    steel: 'B5B5C3',
+    water: '3295F6'
+  };
 
   const [pokemon, setPokemon] = useState({});
 
@@ -70,45 +70,14 @@ const PokemonDetails = ({location}) => {
                 <div className="col-7">
                   <div className="float-right">
 
-                  {pokemon.id && (
-                    <span className="badge badge-pill mr-1"
-                          style={{ color: '#444'
-                                }}>
-                      { pokemon.types.map(   
-                        (tipo) => tipo.type.name
-                      ).join(', ').toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                      }
-                    </span>
-                  )}
-                    
-                    {/* { pokemon.id && (
-                      <span className="badge badge-pill mr-1"
-                            style={{ backgroundColor: 'red',
-                                     color: 'white'
-                                  }}>
-                        { pokemon.types.map(   
-                          (tipo) => tipo.type.name
-                        ).join(' ')
-                        }
-                      </span>
-                    )} */}
-
-                    {/* { types.map(type => (
-                      <span
-                        key={type}
-                        className="badge badge-pill mr-1"
+                    {pokemon.id &&
+                      pokemon.types.map(({ type: { name } }) => (
+                      <span key={name} className="badge badge-pill mr-1"
                         style={{
-                          backgroundColor: `#${TYPE_COLORS[type]}`,
+                          backgroundColor: "#" + TYPE_COLORS[name],
                           color: 'white'
-                        }}
-                      >
-                        {type
-                          .toLowerCase()
-                          .split(' ')
-                          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                          .join(' ')}
-                      </span>
-                    ))} */}
+                        }}>{name}</span>)
+                    )}
                     
                   </div>
                 </div>
