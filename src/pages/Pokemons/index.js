@@ -51,7 +51,7 @@ const Pokemon = () => {
                     });
                   }}>
                     
-                      <img src={ pokemon.name } className="card-img-top rounded mx-auto mt-2" alt={ pokemon.name } />
+                      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} className="card-img-top rounded mx-auto mt-2" alt={ pokemon.name } />
                     
                     <div className="card-body">
                       <h6>{ pokemon.name }</h6>

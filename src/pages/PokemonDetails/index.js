@@ -96,7 +96,17 @@ const PokemonDetails = ({location}) => {
                     <div className="col-12 col-md-3">HP</div>
                     <div className="col-12 col-md-9">
                       <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div
+                            className="progress-bar"
+                            role="progressbar"
+                            style={{
+                              width: '100px',
+                              backgroundColor: 'red'
+                            }}
+                            aria-valuenow="25"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                        >
                           <small>100</small>
                         </div>
                       </div>
@@ -116,7 +126,8 @@ const PokemonDetails = ({location}) => {
                     <div className="col-12 col-md-3">Defense</div>
                     <div className="col-12 col-md-9">
                       <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div className="progress-bar"
+                             role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                           <small>100</small>
                         </div>
                       </div>
