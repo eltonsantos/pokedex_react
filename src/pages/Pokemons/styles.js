@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   color: #000;
+  &:hover {
+    color: var(--color-white);
+    text-decoration: none !important;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -9,17 +13,31 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   flex: 1;
   max-width: 1128px;
+  color: #fff;
+  text-decoration: none;
   padding-top: 40px;
   margin: 0 auto;
   height: 52px;
   .pagination {
     margin: 0 auto;
   }
-
-  .card {
+  a {
     color: #ff9900;
-    text-align: center;
+    text-decoration: none;
   }
+  .card {
+    text-align: center;
+    color: #333;
+    &:hover {
+      color: #ff9900;
+      text-decoration: none !important;
+    }
+  }
+
+  .card-block {
+    color: #fff !important;
+  }
+
   .left,
   .right nav {
     display: flex;

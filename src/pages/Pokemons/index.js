@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Container, Wrapper} from './styles';
 import axios from 'axios';
@@ -19,7 +19,11 @@ const Pokemon = () => {
       // console.log(data);
       setPrevious(data.previous);
       setNext(data.next);
-      setPokemons(data.results);
+      setPokemons(data.results.map(({ url, name }) => ({
+        url,
+        name,
+        id: url.match(/(\d+)\/$/)[1],
+      })));
 
     }catch(e){
       console.log(e);
@@ -36,15 +40,19 @@ const Pokemon = () => {
       <Wrapper>
         <div className="row">
             { pokemons.map( pokemon => (
-              <div className="col-md-3 col-sm-6 mb-5">
-                <a href="#">
-                  <h5 className="card-header">id</h5>
+              <div key={ pokemon.name }className="col-md-3 col-sm-6 mb-5 card-block">
+                {/* eslint-disable-next-line */}
+                <a href="#" >
+                  <h5 className="card-header">{ pokemon.id }</h5>
                   <div key={ pokemon.name } className="card" onClick={() => {
                     history.push({
                       pathname: '/pokemon/',
                       search: `${ pokemon.url }`
                     });
                   }}>
+                    
+                      <img src={ pokemon.name } className="card-img-top rounded mx-auto mt-2" alt={ pokemon.name } />
+                    
                     <div className="card-body">
                       <h6>{ pokemon.name }</h6>
                     </div>
@@ -53,8 +61,8 @@ const Pokemon = () => {
               </div>
             ))}
 
-            <ul class="pagination">
-              <button class="page-link"
+            <ul className="pagination">
+              <button className="page-link"
                       disabled={ !previous }
                       onClick={() => {
                           getPokemons(previous);
@@ -62,7 +70,7 @@ const Pokemon = () => {
                         Previous
               </button>
 
-              <button class="page-link"
+              <button className="page-link"
                       disabled={ !next }
                       onClick={() => {
                           getPokemons(next);

@@ -4,6 +4,27 @@ import {Container, Wrapper} from './styles';
 
 const PokemonDetails = ({location}) => {
 
+  // const TYPE_COLORS = {
+  //   bug: 'B1C12E',
+  //   dark: '4F3A2D',
+  //   dragon: '755EDF',
+  //   electric: 'FCBC17',
+  //   fairy: 'F4B1F4',
+  //   fighting: '823551D',
+  //   fire: 'E73B0C',
+  //   flying: 'A3B3F7',
+  //   ghost: '6060B2',
+  //   grass: '74C236',
+  //   ground: 'D3B357',
+  //   ice: 'A3E7FD',
+  //   normal: 'C8C4BC',
+  //   poison: '934594',
+  //   psychic: 'ED4882',
+  //   rock: 'B9A156',
+  //   steel: 'B5B5C3',
+  //   water: '3295F6'
+  // };
+
   const [pokemon, setPokemon] = useState({});
 
   const getPokemon = async (url) => {
@@ -24,6 +45,18 @@ const PokemonDetails = ({location}) => {
     // eslint-disable-next-line
   }, [location.search])
 
+  // Conversao
+  const height =
+      Math.round(pokemon.height ) / 10;
+      console.log("altura: "+pokemon.height)
+
+  const weight =
+      Math.round(pokemon.weight) / 10;
+      console.log("peso: "+pokemon.weight)
+
+  // TIPO
+  //const types = pokemon.data.types.map(type => type.type.name);
+
   return (
     <Container>
       <Wrapper>
@@ -32,12 +65,51 @@ const PokemonDetails = ({location}) => {
             <div className="card-header">
               <div className="row">
                 <div className="col-5">
-                  <h5>{ pokemon.id }</h5>
+                  <h5>Nº { pokemon.id }</h5>
                 </div>
                 <div className="col-7">
                   <div className="float-right">
-                    <span className="badge badge-pill mr-1">Type 1</span>
-                    <span className="badge badge-pill mr-1">Type 2</span>
+
+                  {pokemon.id && (
+                    <span className="badge badge-pill mr-1"
+                          style={{ color: '#444'
+                                }}>
+                      { pokemon.types.map(   
+                        (tipo) => tipo.type.name
+                      ).join(', ').toLowerCase().split(' , ').map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                      }
+                    </span>
+                  )}
+                    
+                    {/* { pokemon.id && (
+                      <span className="badge badge-pill mr-1"
+                            style={{ backgroundColor: 'red',
+                                     color: 'white'
+                                  }}>
+                        { pokemon.types.map(   
+                          (tipo) => tipo.type.name
+                        ).join(' ')
+                        }
+                      </span>
+                    )} */}
+
+                    {/* { types.map(type => (
+                      <span
+                        key={type}
+                        className="badge badge-pill mr-1"
+                        style={{
+                          backgroundColor: `#${TYPE_COLORS[type]}`,
+                          color: 'white'
+                        }}
+                      >
+                        {type
+                          .toLowerCase()
+                          .split(' ')
+                          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                          .join(' ')}
+                      </span>
+                    ))} */}
+                    
                   </div>
                 </div>
               </div>
@@ -45,7 +117,9 @@ const PokemonDetails = ({location}) => {
             <div className="card-body">
               <div className="row align-items-center">
                 <div className="col-3">
-                  <img src="{ pokemon.url.sprites['front_default'] }" className="card-img-top rounded mx-auto mtt-2" />
+                  { pokemon.id && (
+                    <img src={ pokemon.sprites['front_default'] } className="card-img-top rounded mx-auto mtt-2" alt={ pokemon.name } />
+                  )}
                 </div>
                 <div className="col-9">
                   <h4 className="mx-auto">{ pokemon.name}</h4>
@@ -112,14 +186,6 @@ const PokemonDetails = ({location}) => {
                 </div>
               </div>
 
-              <div className="row mt-1">
-                <div className="col">
-                  <br />
-                  <p className="text-center">
-                  Aqui é onde ficará a descrição de cada pokémon.
-                  </p>
-                </div>
-              </div>
             </div>
 
             <hr />
@@ -130,16 +196,16 @@ const PokemonDetails = ({location}) => {
                 <div className="col-md-6">
                   <div className="row">
                     <div className="col-6">
-                      <h6 className="float-right">Altura:</h6>
+                      <h6 className="float-right">Altura (m):</h6>
                     </div>
                     <div className="col-6">
-                      <h6 className="float-left">Altura aqui</h6>
+                      <h6 className="float-left">{ height }</h6>
                     </div>
                     <div className="col-6">
-                      <h6 className="float-right">Peso:</h6>
+                      <h6 className="float-right">Peso (kg):</h6>
                     </div>
                     <div className="col-6">
-                      <h6 className="float-left">Peso aqui</h6>
+                      <h6 className="float-left">{ weight }</h6>
                     </div>
                   </div>
                 </div>
@@ -148,22 +214,25 @@ const PokemonDetails = ({location}) => {
                     <div className="col-6">
                       <h6 className="float-right">Abilities:</h6>
                     </div>
-                    <div className="col-6">
-                      <h6 className="float-left">Abilities aqui</h6>
-                    </div>
-                    <div className="col-6">
-                      <h6 className="float-right">EVs:</h6>
-                    </div>
-                    <div className="col-6">
-                      <h6 className="float-left">EVs aqui</h6>
-                    </div>
+                    
+                    { pokemon.id && (
+                      <div className="col-6">
+                        <h6 className="float-left">
+                          { pokemon.abilities.map(
+                            (item) => item.ability.name
+                          ).join(', ').toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                          }
+                        </h6>
+                      </div>
+                    )}
+                    
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="card-footer text-muted">
-              Dados consumidos da <a href="https://pokeapi.co/" target="_blank">PokeAPI.co</a>
+              Dados consumidos da <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokeAPI.co</a>
             </div>
 
           </div>
