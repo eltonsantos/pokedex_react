@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  color: #000;
 `;
 
 export const Wrapper = styled.div`
@@ -9,20 +8,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   flex: 1;
   max-width: 1128px;
-  padding-top: 40px;
+  margin-top: 20px;
   margin: 0 auto;
   height: 52px;
-  .pagination {
-    margin: 0 auto;
-  }
-
-  .card {
-    color: #ff9900;
-    text-align: center;
-  }
   .left,
   .right nav {
-    display: flex;
     align-items: center;
   }
   .right nav {
