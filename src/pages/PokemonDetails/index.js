@@ -25,6 +25,15 @@ const PokemonDetails = ({location}) => {
     water: '3295F6'
   };
 
+  const STATS = {
+    'hp': 'HP',
+    'attack': 'Ataque',
+    'defense': 'Defesa',
+    'special-attack': 'Especial Ataque',
+    'special-defense': 'Especial Defesa',
+    'speed': 'Velocidade'
+  };
+
   const [pokemon, setPokemon] = useState({});
 
   const getPokemon = async (url) => {
@@ -92,77 +101,31 @@ const PokemonDetails = ({location}) => {
                 </div>
                 <div className="col-9">
                   <h4 className="mx-auto">{ pokemon.name }</h4>
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-3">HP</div>
-                    <div className="col-12 col-md-9">
-                      <div className="progress">
-                        <div
-                            className="progress-bar"
-                            role="progressbar"
-                            style={{
-                              width: '100%',
-                              backgroundColor: 'red'
-                            }}
-                            aria-valuenow="25"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                        >
-                          <small> 100 </small>
+
+                  
+                  { pokemon.id && pokemon.stats.map(({ base_stat: value, stat: { name, color } }) => (
+                    <div className="row align-items-center">
+                      <div className="col-12 col-md-3">{ STATS[name] }</div>
+                      <div className="col-12 col-md-9">
+                        <div className="progress">
+                          <div
+                              className="progress-bar"
+                              role="progressbar"
+                              style={{
+                                width: `${(( value / 150 ) * 100)}%`,
+                                backgroundColor: "#" + TYPE_COLORS[STATS[name].color || 'fire' ]
+                              }}
+                              aria-valuenow="25"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                          >
+                            <small> {  value } </small>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-3">Attack</div>
-                    <div className="col-12 col-md-9">
-                      <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <small>100</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-3">Defense</div>
-                    <div className="col-12 col-md-9">
-                      <div className="progress">
-                        <div className="progress-bar"
-                             role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <small>100</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-3">Speed</div>
-                    <div className="col-12 col-md-9">
-                      <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <small>100</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-3">Sp. Atk.</div>
-                    <div className="col-12 col-md-9">
-                      <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <small>100</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row align-items-center">
-                    <div className="col-12 col-md-3">Sp. Def.</div>
-                    <div className="col-12 col-md-9">
-                      <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <small>100</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
+
                 </div>
               </div>
 
