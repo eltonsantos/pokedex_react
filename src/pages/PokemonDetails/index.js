@@ -40,8 +40,6 @@ const PokemonDetails = ({location}) => {
     try {
       const { data } = await axios.get(url);
       setPokemon(data)
-      console.log("pokemon: "+pokemon);
-      console.log("data: "+data);
     } catch (e) {
       console.log(e);
     }
@@ -50,21 +48,15 @@ const PokemonDetails = ({location}) => {
   useEffect(() => {
     const url = location.search.substr(1);
     getPokemon(url);
-    console.log("url: " +url);
     // eslint-disable-next-line
   }, [location.search])
 
   // Conversao
   const height =
       Math.round(pokemon.height ) / 10;
-      console.log("altura: "+pokemon.height)
 
   const weight =
       Math.round(pokemon.weight) / 10;
-      console.log("peso: "+pokemon.weight)
-
-  // TIPO
-  //const types = pokemon.data.types.map(type => type.type.name);
 
   return (
     <Container>
@@ -104,7 +96,7 @@ const PokemonDetails = ({location}) => {
 
                   
                   { pokemon.id && pokemon.stats.map(({ base_stat: value, stat: { name, color } }) => (
-                    <div className="row align-items-center">
+                    <div key={ pokemon.id } className="row align-items-center">
                       <div className="col-12 col-md-3">{ STATS[name] }</div>
                       <div className="col-12 col-md-9">
                         <div className="progress">

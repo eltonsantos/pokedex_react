@@ -10,8 +10,6 @@ const Pokemon = () => {
   const [pokemons, setPokemons] = useState([]);
   const history = useHistory();
 
-  console.log(pokemons)
-
   const getPokemons = async (url='https://pokeapi.co/api/v2/pokemon') => {
     try {
       const { data } = await axios.get(url);
@@ -40,7 +38,7 @@ const Pokemon = () => {
       <Wrapper>
         <div className="row">
             { pokemons.map( pokemon => (
-              <div key={ pokemon.name }className="col-md-3 col-sm-6 mb-5 card-block">
+              <div key={ pokemon.name } className="col-md-3 col-sm-6 mb-5 card-block">
                 {/* eslint-disable-next-line */}
                 <a href="#" >
                   <h5 className="card-header">{ pokemon.id }</h5>
