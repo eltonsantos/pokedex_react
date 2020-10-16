@@ -76,7 +76,7 @@ const PokemonDetails = ({location}) => {
                                 }}>
                       { pokemon.types.map(   
                         (tipo) => tipo.type.name
-                      ).join(', ').toLowerCase().split(' , ').map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                      ).join(', ').toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1))
                       }
                     </span>
                   )}
@@ -118,7 +118,7 @@ const PokemonDetails = ({location}) => {
               <div className="row align-items-center">
                 <div className="col-3">
                   { pokemon.id && (
-                    <img src={ pokemon.sprites['front_default'] } className="card-img-top rounded mx-auto mtt-2" alt={ pokemon.name } />
+                  <img src={ pokemon.sprites.front_default } className="card-img-top rounded mx-auto mtt-2" alt={ pokemon.name } />
                   )}
                 </div>
                 <div className="col-9">
