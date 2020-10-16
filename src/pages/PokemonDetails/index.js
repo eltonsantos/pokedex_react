@@ -87,11 +87,11 @@ const PokemonDetails = ({location}) => {
               <div className="row align-items-center">
                 <div className="col-3">
                   { pokemon.id && (
-                  <img src={ pokemon.sprites.front_default } className="card-img-top rounded mx-auto mtt-2" alt={ pokemon.name } />
+                   <img src={ pokemon.sprites.front_default } className="card-img-top rounded mx-auto mtt-2" alt={ pokemon.name } />
                   )}
                 </div>
                 <div className="col-9">
-                  <h4 className="mx-auto">{ pokemon.name}</h4>
+                  <h4 className="mx-auto">{ pokemon.name }</h4>
                   <div className="row align-items-center">
                     <div className="col-12 col-md-3">HP</div>
                     <div className="col-12 col-md-9">
@@ -100,14 +100,14 @@ const PokemonDetails = ({location}) => {
                             className="progress-bar"
                             role="progressbar"
                             style={{
-                              width: '100px',
+                              width: '100%',
                               backgroundColor: 'red'
                             }}
                             aria-valuenow="25"
                             aria-valuemin="0"
                             aria-valuemax="100"
                         >
-                          <small>100</small>
+                          <small> 100 </small>
                         </div>
                       </div>
                     </div>
