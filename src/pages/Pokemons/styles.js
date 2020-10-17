@@ -10,7 +10,11 @@ export const Container = styled.div`
     width: 300px;
     margin: 0 auto;
     margin-top: 10px;
-    display: none;
+  }
+
+  .btn-red {
+    background-color: red;
+    border: 1px solid red;
   }
 `;
 

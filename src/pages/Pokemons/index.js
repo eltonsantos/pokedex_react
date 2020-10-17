@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Container, Wrapper} from './styles';
 import axios from 'axios';
@@ -8,8 +8,9 @@ const Pokemon = () => {
   const [previous, setPrevious] = useState([]);
   const [next, setNext] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const [pokemon, setPokemon] = useState([]);
   const history = useHistory();
+
+  const [search, setSearch] = useState([]);
 
   const getPokemons = async (url='https://pokeapi.co/api/v2/pokemon') => {
     try {
@@ -33,22 +34,36 @@ const Pokemon = () => {
     getPokemons();
   }, []);
 
-  const handleChange = (e) => {
-    setPokemon(e.target.value.toLowerCase())
-  }
 
-  const handleSubmit = (e) => {
+  const handleSearch = useCallback(async (e) => {
     e.preventDefault();
-    getPokemons()
-  }
+    try {
+      const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`);
+      if (!!data) {
+        history.push({
+          pathname: '/pokemon/',
+          search: `https://pokeapi.co/api/v2/pokemon/${data.id}`
+        });
+      }
+    }
+    catch (e) {
+      console.log(e);
+      alert('Pokemon não encontrado!')
+    }
+  }, [history, search]);
+
+
+
+
 
   return (
     <Container>
 
-        <form onSubmit={handleSubmit} className="busca">
-          <div class="form-group">
-            <input type="text" class="form-control" onChange={handleChange} placeholder="Digite o pokemon (Não funciona)" />
-          </div>
+
+
+        <form onSubmit={handleSearch} className="busca form-inline">
+          <input type="text" class="form-control" value={search} onChange={(e) => { setSearch(e.target.value) }} />
+          <button type="button" onClick={handleSearch} className="btn btn-primary btn-red">Pesquisar</button>
         </form>
 
       <Wrapper>
