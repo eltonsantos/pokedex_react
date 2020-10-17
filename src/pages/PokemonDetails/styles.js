@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   padding-top: 40px;
   margin: 0 auto;
   height: 52px;
+
   .mx-auto {
     color: #ff9900;
     text-transform: uppercase;

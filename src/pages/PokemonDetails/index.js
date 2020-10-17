@@ -162,7 +162,27 @@ const PokemonDetails = ({location}) => {
                     )}
                     
                   </div>
-                </div>
+                </div>           
+              </div>
+            </div>
+
+            <hr />
+
+            <div className="card-body">
+              <h5 className="card-title text-center">List Moves</h5>
+              <div className="row">
+    
+                { pokemon.id && (
+                  <div className="col-12 text-center">
+                    <h6 className="float-left moves">
+                      { pokemon.moves.map(
+                        (item) => item.move.name
+                      ).join(', ').toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                      }
+                    </h6>
+                  </div>
+                )}
+
               </div>
             </div>
 
