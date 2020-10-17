@@ -6,6 +6,11 @@ export const Container = styled.div`
     color: var(--color-white);
     text-decoration: none !important;
   }
+  .busca {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
 `;
 
 export const Wrapper = styled.div`

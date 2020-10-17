@@ -8,6 +8,7 @@ const Pokemon = () => {
   const [previous, setPrevious] = useState([]);
   const [next, setNext] = useState([]);
   const [pokemons, setPokemons] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
   const history = useHistory();
 
   const getPokemons = async (url='https://pokeapi.co/api/v2/pokemon') => {
@@ -32,12 +33,30 @@ const Pokemon = () => {
     getPokemons();
   }, []);
 
+  const handleChange = (e) => {
+    setPokemon(e.target.value.toLowerCase())
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPokemon()
+  }
 
   return (
     <Container>
+
+        <form onSubmit={handleSubmit} className="busca">
+          <div class="form-group">
+            <input type="text" class="form-control" onChange={handleChange} placeholder="Digite o nome do pokemon" />
+          </div>
+        </form>
+
       <Wrapper>
+        
         <div className="row">
+
             { pokemons.map( pokemon => (
+              
               <div key={ pokemon.name } className="col-md-3 col-sm-6 mb-5 card-block">
                 {/* eslint-disable-next-line */}
                 <a href="#" >
