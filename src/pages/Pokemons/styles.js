@@ -10,6 +10,7 @@ export const Container = styled.div`
     width: 300px;
     margin: 0 auto;
     margin-top: 10px;
+    display: none;
   }
 `;
 

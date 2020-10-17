@@ -39,7 +39,7 @@ const Pokemon = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPokemon()
+    getPokemons()
   }
 
   return (
@@ -47,7 +47,7 @@ const Pokemon = () => {
 
         <form onSubmit={handleSubmit} className="busca">
           <div class="form-group">
-            <input type="text" class="form-control" onChange={handleChange} placeholder="Digite o nome do pokemon" />
+            <input type="text" class="form-control" onChange={handleChange} placeholder="Digite o pokemon (Não funciona)" />
           </div>
         </form>
 
